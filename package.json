@@ -1,0 +1,21 @@
+{
+  "name": "queue-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bee-queue": "^1.7.1",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "firebase": "^10.7.1",
+    "firebase-admin": "^12.0.0",
+    "formidable": "^3.5.1",
+    "ws": "^8.16.0"
+  }
+}
