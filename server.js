@@ -19,7 +19,7 @@ app.use(cors());
 const server = http.createServer(app);
 
 // Use WebSocket module to create a WebSocket server
-const wss = createWebSocketServer(server);
+const wss = createWebSocketServer();
 
 // Use the taskRoutes module for API endpoints
 app.use("/api/tasks", taskRoutes);
