@@ -18,14 +18,6 @@ const createWebSocketServer = () => {
 
   return {
     wss,
-    broadcast: (data) => {
-      const message = JSON.stringify(data);
-      clients.forEach((client) => {
-        if (client.readyState === WebSocket.OPEN) {
-          client.send(message);
-        }
-      });
-    },
   };
 };
 

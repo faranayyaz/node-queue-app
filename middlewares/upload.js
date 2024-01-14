@@ -2,7 +2,7 @@ const formidable = require("formidable");
 
 const createWebSocketServer = require("../utils/websocket");
 
-const { wss, broadcast } = createWebSocketServer();
+const { wss } = createWebSocketServer();
 
 // Middleware for processing file uploads
 const processFileUpload = (req, res, next) => {
@@ -28,8 +28,19 @@ const processFileUpload = (req, res, next) => {
   req.on("data", (chunk) => {
     fileProgress.uploaded += chunk.length;
 
-    // Broadcast progress to connected clients
-    broadcast({ progress: "File upload progress", data: fileProgress });
+    // Send progress to connected client
+    if (req.uid) {
+      wss.clients.forEach((client) => {
+        if (client.uid === req.uid && client.readyState === WebSocket.OPEN) {
+          client.send(
+            JSON.stringify({
+              progress: "File upload progress",
+              data: fileProgress,
+            })
+          );
+        }
+      });
+    }
   });
 
   form.parse(req, (err, fields, files) => {
@@ -52,11 +63,6 @@ const processFileUpload = (req, res, next) => {
   form.on("error", (err) => {
     console.error("File upload error:", err);
     res.status(500).json({ error: "File upload failed" });
-  });
-
-  // Call next middleware or route handler once the file is fully uploaded
-  req.on("end", () => {
-    next();
   });
 };
 
