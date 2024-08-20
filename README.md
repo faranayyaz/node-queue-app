@@ -12,38 +12,6 @@ The Node Queue App is a task management system designed to handle background tas
 - **File Upload Handling:** Middleware for processing file uploads.
 - **Secure API:** Authentication for accessing sensitive endpoints.
 
-## File Structure
-
-```
-- controllers
-  - taskController.js
-  - transcribeController.js
-- functions
-  - .gitignore
-  - index.js
-  - package.json
-  - package-lock.json
-- helpers
-  - taskHelper.js
-- middlewares
-  - authenticated.js
-  - upload.js
-- public
-  - index.html
-- routes
-  - taskRoute.js
-  - transcribeRoute.js
-- utils
-  - firebase.js
-  - websocket.js
-- .firebaserc
-- .gitignore
-- firebase.json
-- package.json
-- package-lock.json
-- server.js
-```
-
 ## Installation
 
 1. **Clone the Repository:**
